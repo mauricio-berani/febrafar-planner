@@ -38,7 +38,7 @@ class LoginController extends Controller
      * and uses the AuthService to authenticate the user.
      *
      * @param LoginRequest $request The login request.
-     * @return \Illuminate\Http\JsonResponse The token and user data, or a validation error response.
+     * @return JsonResponse A JSON response indicating a successful login or a failure message.
      */
     public function login(LoginRequest $request): JsonResponse
     {

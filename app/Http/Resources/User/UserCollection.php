@@ -33,9 +33,10 @@ class UserCollection extends ResourceCollection
             function ($item, $key) {
                 return [
                     $key => [
-                        'id'       => $item->id,
-                        'name'     => $item->name,
-                        'email'    => $item->email,
+                        'id'    => $item->id,
+                        'name'  => $item->name,
+                        'email' => $item->email,
+                        'role'  => $item->role,
                     ]
                 ];
             }

@@ -12,7 +12,15 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('tasks', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary();
+            $table->string('title');
+            $table->text('description')->nullable();
+            $table->timestamp('deadline')->nullable();
+            $table->timestamp('start_date');
+            $table->timestamp('end_date')->nullable();
+            $table->enum('status', ['pendding', 'done'])->default('pendding');
+            $table->foreignUuid('user_id')->references('id')->on('users');
+            $table->foreignUuid('task_type_id')->references('id')->on('task_types');
             $table->timestamps();
         });
     }

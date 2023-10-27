@@ -2,21 +2,17 @@
 
 namespace App\Models\Task;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class Type
- *
- * @package App\Models
- *
- * This class represents a Task Type model in the application.
  */
 class Type extends Model
 {
-    use HasUuids;
     use HasFactory;
+    use HasUuids;
 
     /**
      * The table associated with the model.

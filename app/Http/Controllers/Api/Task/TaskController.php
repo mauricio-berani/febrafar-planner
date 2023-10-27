@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Api\Task;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Task\{CreateRequest, UpdateRequest, MatchRequest};
+use App\Http\Requests\Task\CreateRequest;
+use App\Http\Requests\Task\MatchRequest;
+use App\Http\Requests\Task\UpdateRequest;
 use App\Models\Task\Task;
 use App\Services\Task\TaskService;
 use Illuminate\Http\JsonResponse;
@@ -16,6 +18,7 @@ use Illuminate\Http\JsonResponse;
  *
  * @OA\Schema(
  *     schema="Task",
+ *
  *     @OA\Property(
  *         property="id",
  *         type="string",
@@ -61,12 +64,9 @@ use Illuminate\Http\JsonResponse;
  *
  * This controller handles incoming HTTP requests related to task management,
  * delegating the business logic to the TaskService.
- *
- * @package App\Http\Controllers\Api\Task
  */
 class TaskController extends Controller
 {
-
     /**
      * The task service instance.
      *
@@ -77,7 +77,7 @@ class TaskController extends Controller
     /**
      * Create a new controller instance.
      *
-     * @param TaskTypeService $service The task service instance.
+     * @param  TaskTypeService  $service The task service instance.
      */
     public function __construct(TaskService $service)
     {
@@ -89,33 +89,41 @@ class TaskController extends Controller
      *     path="/api/tasks/matches",
      *     summary="Find all tasks that match certain criteria",
      *     tags={"Tasks"},
+     *
      *     @OA\Parameter(
      *         name="title",
      *         in="query",
      *         required=true,
      *         description="Title to match",
+     *
      *         @OA\Schema(
      *             type="string"
      *         )
      *     ),
+     *
      *     @OA\Parameter(
      *         name="status",
      *         in="query",
      *         required=true,
      *         description="Status to match",
+     *
      *         @OA\Schema(
      *             type="string",
      *             enum={"pending", "completed", "in_progress"}
      *         )
      *     ),
+     *
      *     @OA\Response(
      *         response=200,
      *         description="List of matching tasks successfully retrieved",
+     *
      *         @OA\JsonContent(
      *             type="array",
+     *
      *             @OA\Items(ref="#/components/schemas/Task")
      *         )
      *     ),
+     *
      *     @OA\Response(
      *         response=401,
      *         description="Unauthorized"
@@ -124,7 +132,7 @@ class TaskController extends Controller
      *
      * Handle a request to find all matching task based on certain criteria.
      *
-     * @param MatchRequest $request The incoming request.
+     * @param  MatchRequest  $request The incoming request.
      * @return JsonResponse The JSON response for the client.
      */
     public function findAllMatches(MatchRequest $request): JsonResponse
@@ -139,14 +147,18 @@ class TaskController extends Controller
      *     path="/api/tasks",
      *     summary="Retrieve the list of tasks",
      *     tags={"Tasks"},
+     *
      *     @OA\Response(
      *         response=200,
      *         description="List of all tasks successfully retrieved",
+     *
      *         @OA\JsonContent(
      *             type="array",
+     *
      *             @OA\Items(ref="#/components/schemas/Task")
      *         )
      *     ),
+     *
      *     @OA\Response(
      *         response=401,
      *         description="Unauthorized"
@@ -167,20 +179,25 @@ class TaskController extends Controller
      *     path="/api/tasks/{task}",
      *     summary="Retrieve a single task",
      *     tags={"Tasks"},
+     *
      *     @OA\Parameter(
      *         name="task",
      *         in="path",
      *         required=true,
      *         description="ID of the task to retrieve",
+     *
      *         @OA\Schema(
      *             type="integer"
      *         )
      *     ),
+     *
      *     @OA\Response(
      *         response=200,
      *         description="Task successfully retrieved",
+     *
      *         @OA\JsonContent(ref="#/components/schemas/Task")
      *     ),
+     *
      *     @OA\Response(
      *         response=401,
      *         description="Unauthorized"
@@ -193,7 +210,7 @@ class TaskController extends Controller
      *
      * Handle a request to find a single task.
      *
-     * @param Task $task The task task to find.
+     * @param  Task  $task The task task to find.
      * @return JsonResponse The JSON response for the client.
      */
     public function findOne(Task $task): JsonResponse
@@ -206,10 +223,13 @@ class TaskController extends Controller
      *     path="/api/tasks",
      *     summary="Create a new task",
      *     tags={"Tasks"},
+     *
      *     @OA\RequestBody(
      *         required=true,
      *         description="Task creation data",
+     *
      *         @OA\JsonContent(
+     *
      *             @OA\Property(
      *                 property="title",
      *                 type="string",
@@ -246,11 +266,14 @@ class TaskController extends Controller
      *             )
      *         )
      *     ),
+     *
      *     @OA\Response(
      *         response=201,
      *         description="Task successfully created",
+     *
      *         @OA\JsonContent(ref="#/components/schemas/Task")
      *     ),
+     *
      *     @OA\Response(
      *         response=401,
      *         description="Unauthorized"
@@ -261,7 +284,7 @@ class TaskController extends Controller
      *     )
      * )
      *
-     * @param CreateRequest $request The incoming request.
+     * @param  CreateRequest  $request The incoming request.
      * @return JsonResponse The JSON response for the client.
      */
     public function create(CreateRequest $request): JsonResponse
@@ -276,19 +299,24 @@ class TaskController extends Controller
      *     path="/api/tasks/{task}",
      *     summary="Update an existing task",
      *     tags={"Tasks"},
+     *
      *     @OA\Parameter(
      *         name="task",
      *         in="path",
      *         required=true,
      *         description="ID of the task to update",
+     *
      *         @OA\Schema(
      *             type="integer"
      *         )
      *     ),
+     *
      *     @OA\RequestBody(
      *         required=true,
      *         description="Updated task data",
+     *
      *         @OA\JsonContent(
+     *
      *             @OA\Property(
      *                 property="title",
      *                 type="string",
@@ -325,11 +353,14 @@ class TaskController extends Controller
      *             )
      *         )
      *     ),
+     *
      *     @OA\Response(
      *         response=200,
      *         description="Task successfully updated",
+     *
      *         @OA\JsonContent(ref="#/components/schemas/Task")
      *     ),
+     *
      *     @OA\Response(
      *         response=401,
      *         description="Unauthorized"
@@ -346,8 +377,8 @@ class TaskController extends Controller
      *
      * Handle a request to update an existing task.
      *
-     * @param UpdateRequest $request The incoming request.
-     * @param Task $task The task to update.
+     * @param  UpdateRequest  $request The incoming request.
+     * @param  Task  $task The task to update.
      * @return JsonResponse The JSON response for the client.
      */
     public function update(UpdateRequest $request, Task $task): JsonResponse
@@ -362,15 +393,18 @@ class TaskController extends Controller
      *     path="/api/tasks/{task}",
      *     summary="Delete an existing task",
      *     tags={"Tasks"},
+     *
      *     @OA\Parameter(
      *         name="task",
      *         in="path",
      *         required=true,
      *         description="ID of the task to delete",
+     *
      *         @OA\Schema(
      *             type="integer"
      *         )
      *     ),
+     *
      *     @OA\Response(
      *         response=204,
      *         description="Task successfully deleted"
@@ -387,7 +421,7 @@ class TaskController extends Controller
      *
      * Handle a request to delete an existing task.
      *
-     * @param Task $task The task to delete.
+     * @param  Task  $task The task to delete.
      * @return JsonResponse The JSON response for the client.
      */
     public function delete(Task $task): JsonResponse

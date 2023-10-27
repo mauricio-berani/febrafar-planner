@@ -11,7 +11,6 @@ use Illuminate\Http\Exceptions\HttpResponseException;
  */
 class MatchRequest extends FormRequest
 {
-
     /**
      * @var bool To stop validation on the first failure.
      */
@@ -19,8 +18,6 @@ class MatchRequest extends FormRequest
 
     /**
      * Determine if the user is authorized to make this request.
-     *
-     * @return bool
      */
     public function authorize(): bool
     {
@@ -35,7 +32,7 @@ class MatchRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'search'  => 'string|max:255',
+            'search' => 'string|max:255',
             'perPage' => 'integer',
             'orderBy' => 'string',
         ];
@@ -45,6 +42,7 @@ class MatchRequest extends FormRequest
      * Handle a failed validation attempt.
      *
      * @param  Validator  $validator  The validator instance.
+     *
      * @throws HttpResponseException
      */
     protected function failedValidation(Validator $validator)
@@ -60,10 +58,10 @@ class MatchRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'search.string'   => 'Invalid search term.',
-            'search.max'      => 'Try searching for a shorter name.',
+            'search.string' => 'Invalid search term.',
+            'search.max' => 'Try searching for a shorter name.',
             'perPage.integer' => 'Invalid pagination parameters.',
-            'orderBy.string'  => 'Invalid sorting parameters.',
+            'orderBy.string' => 'Invalid sorting parameters.',
         ];
     }
 }

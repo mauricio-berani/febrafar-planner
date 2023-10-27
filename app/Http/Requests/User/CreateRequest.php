@@ -11,10 +11,8 @@ use Illuminate\Validation\Rules\Enum;
 /**
  * This class represents the form request for creating a user.
  */
-
 class CreateRequest extends FormRequest
 {
-
     /**
      * Indicates whether the validator should stop on the first validation failure.
      *
@@ -24,8 +22,6 @@ class CreateRequest extends FormRequest
 
     /**
      * Determine if the user is authorized to make this request.
-     *
-     * @return bool
      */
     public function authorize(): bool
     {
@@ -40,17 +36,16 @@ class CreateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name'        => 'required|string|max:255',
-            'email'       => 'required|string|email|max:255|unique:users',
-            'password'    => 'required|string|min:8',
-            'role'        => ['required', 'string', new Enum(Roles::class)],
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|min:8',
+            'role' => ['required', 'string', new Enum(Roles::class)],
         ];
     }
 
     /**
      * Handle a failed validation attempt.
      *
-     * @param Validator $validator
      * @throws HttpResponseException
      */
     protected function failedValidation(Validator $validator)
@@ -66,19 +61,19 @@ class CreateRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'name.required'     => 'Provide the name.',
-            'name.string'       => 'Name must be in text format.',
-            'name.max'          => 'Name must have up to 255 characters.',
-            'email.required'    => 'Provide the email.',
-            'email.string'      => 'Email must be in text format.',
-            'email.email'       => 'Provide a valid email.',
-            'email.max'         => 'Email must have up to 255 characters.',
-            'email.unique'      => 'This email is already in use. Try another.',
+            'name.required' => 'Provide the name.',
+            'name.string' => 'Name must be in text format.',
+            'name.max' => 'Name must have up to 255 characters.',
+            'email.required' => 'Provide the email.',
+            'email.string' => 'Email must be in text format.',
+            'email.email' => 'Provide a valid email.',
+            'email.max' => 'Email must have up to 255 characters.',
+            'email.unique' => 'This email is already in use. Try another.',
             'password.required' => 'Provide your password.',
-            'password.string'   => 'Your password must contain letters and numbers.',
-            'password.min'      => 'Your password must have 8 or more characters.',
-            'role.required'     => 'Provide the user role.',
-            'role.string'       => 'Invalid roles.',
+            'password.string' => 'Your password must contain letters and numbers.',
+            'password.min' => 'Your password must have 8 or more characters.',
+            'role.required' => 'Provide the user role.',
+            'role.string' => 'Invalid roles.',
         ];
     }
 }

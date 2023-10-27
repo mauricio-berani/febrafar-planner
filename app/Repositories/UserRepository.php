@@ -5,15 +5,14 @@ namespace App\Repositories;
 use App\Models\User;
 use Illuminate\Contracts\Pagination\Paginator;
 use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 /**
  * The UserRepository class provides a way to interact with the User data within the database.
  */
 class UserRepository
 {
-
     /**
      * @var User The User model instance.
      */
@@ -33,14 +32,12 @@ class UserRepository
      * Fetches users matching the provided search parameters, and paginates the result.
      *
      * @param  string|null  $search    The search query.
-     * @param  string       $perPage   The number of items to be displayed per page.
-     * @param  string       $orderBy   The column to sort the result by.
-     * @return Paginator
+     * @param  string  $perPage   The number of items to be displayed per page.
+     * @param  string  $orderBy   The column to sort the result by.
      */
-    public function findAllMatches(string|null $search, string $perPage, string $orderBy): Paginator
+    public function findAllMatches(?string $search, string $perPage, string $orderBy): Paginator
     {
         $query = $this->model->query();
-
 
         if ($search) {
             $query->where('name', 'like', "%$search%");
@@ -51,7 +48,7 @@ class UserRepository
             $order = explode('-', $orderBy);
 
             if (count($order) === 2) {
-                $column    = strtolower($order[0]);
+                $column = strtolower($order[0]);
                 $direction = strtolower($order[1]);
 
                 if (
@@ -68,8 +65,6 @@ class UserRepository
 
     /**
      * Fetches all users.
-     *
-     * @return Collection
      */
     public function findAll(): Collection
     {
@@ -80,7 +75,6 @@ class UserRepository
      * Fetches a single user based on the provided email.
      *
      * @param  string  $email  The user's email.
-     * @return User
      */
     public function getOneByEmail(string $email): User
     {
@@ -91,7 +85,6 @@ class UserRepository
      * Creates a new user based on the provided data.
      *
      * @param  array  $data  The user data.
-     * @return User|bool
      */
     public function create(array $data): User|bool
     {
@@ -116,15 +109,15 @@ class UserRepository
      *
      * @param  array  $data  The new user data.
      * @param  User  $user  The user loaded.
-     * @return User|bool
      */
     public function update(array $data, User $user): User|bool
     {
         DB::beginTransaction();
 
         try {
-            if (isset($data['password']))
+            if (isset($data['password'])) {
                 $data['password'] = Hash::make($data['password']);
+            }
 
             $user->update($data);
             DB::commit();
@@ -142,7 +135,6 @@ class UserRepository
      * Deletes a user.
      *
      * @param  User  $user  The user loaded.
-     * @return bool
      */
     public function delete(User $user): bool
     {

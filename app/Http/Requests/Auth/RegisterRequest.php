@@ -8,14 +8,9 @@ use Illuminate\Http\Exceptions\HttpResponseException;
 
 /**
  * Class RegisterRequest
- *
- * @package App\Http\Requests\Auth
- *
- * This class represents a form request for user registration.
  */
 class RegisterRequest extends FormRequest
 {
-
     /**
      * @var bool Stop validation on the first failure.
      */
@@ -39,8 +34,8 @@ class RegisterRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name'     => 'required|string|max:255',
-            'email'    => 'required|string|email|max:255|unique:users',
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|min:8',
         ];
     }
@@ -48,7 +43,7 @@ class RegisterRequest extends FormRequest
     /**
      * Handle a failed validation attempt.
      *
-     * @param Validator $validator The validator instance.
+     * @param  Validator  $validator The validator instance.
      *
      * @throws HttpResponseException Throws a HTTP response exception with a JSON payload containing the validation errors.
      */
@@ -65,16 +60,16 @@ class RegisterRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'name.required'     => 'Enter your name.',
-            'name.string'       => 'Name must be in text format.',
-            'name.max'          => 'Name must have up to 255 characters.',
-            'email.required'    => 'Enter your email.',
-            'email.string'      => 'Email must be in text format.',
-            'email.email'       => 'Enter a valid email.',
-            'email.max'         => 'Email must have up to 255 characters.',
-            'email.unique'      => 'This email is already in use. Try another.',
+            'name.required' => 'Enter your name.',
+            'name.string' => 'Name must be in text format.',
+            'name.max' => 'Name must have up to 255 characters.',
+            'email.required' => 'Enter your email.',
+            'email.string' => 'Email must be in text format.',
+            'email.email' => 'Enter a valid email.',
+            'email.max' => 'Email must have up to 255 characters.',
+            'email.unique' => 'This email is already in use. Try another.',
             'password.required' => 'Enter your password.',
-            'password.min'      => 'Your password must have 8 or more characters.',
+            'password.min' => 'Your password must have 8 or more characters.',
 
         ];
     }

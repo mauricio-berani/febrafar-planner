@@ -18,7 +18,7 @@ class UserFeatureTest extends TestCase
         parent::setUp();
         $this->user = User::factory()->create([
             'name' => 'Tester',
-            'role' => 'administrator'
+            'role' => 'administrator',
         ]);
     }
 

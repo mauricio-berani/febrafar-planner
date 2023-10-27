@@ -9,7 +9,6 @@ use App\Models\User;
  */
 class ApiPolicy
 {
-
     /**
      * The authenticated user.
      *

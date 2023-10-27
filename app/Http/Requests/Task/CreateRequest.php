@@ -11,10 +11,8 @@ use Illuminate\Validation\Rules\Enum;
 /**
  * This class represents the form request for creating a user.
  */
-
 class CreateRequest extends FormRequest
 {
-
     /**
      * Indicates whether the validator should stop on the first validation failure.
      *
@@ -24,8 +22,6 @@ class CreateRequest extends FormRequest
 
     /**
      * Determine if the user is authorized to make this request.
-     *
-     * @return bool
      */
     public function authorize(): bool
     {
@@ -40,11 +36,11 @@ class CreateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title'        => 'required|string|max:255',
-            'description'  => 'nullable|string',
-            'deadline'     => 'required|date|after_or_equal:start_date',
-            'start_date'   => 'required|date',
-            'status'       => [new Enum(TaskStatus::class)],
+            'title' => 'required|string|max:255',
+            'description' => 'nullable|string',
+            'deadline' => 'required|date|after_or_equal:start_date',
+            'start_date' => 'required|date',
+            'status' => [new Enum(TaskStatus::class)],
             'task_type_id' => 'required|uuid|exists:task_types,id',
         ];
     }
@@ -52,7 +48,6 @@ class CreateRequest extends FormRequest
     /**
      * Handle a failed validation attempt.
      *
-     * @param Validator $validator
      * @throws HttpResponseException
      */
     protected function failedValidation(Validator $validator)
@@ -68,19 +63,19 @@ class CreateRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'title.required'          => 'The title field is required.',
-            'title.string'            => 'The title must be a string.',
-            'title.max'               => 'The title may not be greater than 255 characters.',
-            'description.string'      => 'The description must be a string.',
-            'deadline.date'           => 'The deadline must be a valid date.',
-            'deadline.required'       => 'The deadline is required.',
+            'title.required' => 'The title field is required.',
+            'title.string' => 'The title must be a string.',
+            'title.max' => 'The title may not be greater than 255 characters.',
+            'description.string' => 'The description must be a string.',
+            'deadline.date' => 'The deadline must be a valid date.',
+            'deadline.required' => 'The deadline is required.',
             'deadline.after_or_equal' => 'The deadline must be a date equal to or after the start date.',
-            'start_date.required'     => 'The start date field is required.',
-            'start_date.date'         => 'The start date must be a valid date.',
-            'status.in'               => 'The status must be either pendding or done.',
-            'task_type_id.required'   => 'The task type ID field is required.',
-            'task_type_id.uuid'       => 'The task type ID must be a valid UUID.',
-            'task_type_id.exists'     => 'The specified task type ID does not exist.',
+            'start_date.required' => 'The start date field is required.',
+            'start_date.date' => 'The start date must be a valid date.',
+            'status.in' => 'The status must be either pendding or done.',
+            'task_type_id.required' => 'The task type ID field is required.',
+            'task_type_id.uuid' => 'The task type ID must be a valid UUID.',
+            'task_type_id.exists' => 'The specified task type ID does not exist.',
         ];
     }
 
@@ -88,7 +83,7 @@ class CreateRequest extends FormRequest
     {
         $data = $this->all();
 
-        if (!isset($data['status'])) {
+        if (! isset($data['status'])) {
             $data['status'] = TaskStatus::Pendding->value;
         }
 

@@ -12,7 +12,6 @@ use Illuminate\Support\Facades\DB;
  */
 class TypeRepository
 {
-
     /**
      * @var Type The Type model instance.
      */
@@ -32,14 +31,12 @@ class TypeRepository
      * Fetches types matching the provided search parameters, and paginates the result.
      *
      * @param  string|null  $search    The search query.
-     * @param  string       $perPage   The number of items to be displayed per page.
-     * @param  string       $orderBy   The column to sort the result by.
-     * @return Paginator
+     * @param  string  $perPage   The number of items to be displayed per page.
+     * @param  string  $orderBy   The column to sort the result by.
      */
-    public function findAllMatches(string|null $search, string $perPage, string $orderBy): Paginator
+    public function findAllMatches(?string $search, string $perPage, string $orderBy): Paginator
     {
         $query = $this->model->query();
-
 
         if ($search) {
             $query->where('name', 'like', "%$search%");
@@ -50,7 +47,7 @@ class TypeRepository
             $order = explode('-', $orderBy);
 
             if (count($order) === 2) {
-                $column    = strtolower($order[0]);
+                $column = strtolower($order[0]);
                 $direction = strtolower($order[1]);
 
                 if (
@@ -67,8 +64,6 @@ class TypeRepository
 
     /**
      * Fetches all types.
-     *
-     * @return Collection
      */
     public function findAll(): Collection
     {
@@ -79,7 +74,6 @@ class TypeRepository
      * Creates a new type based on the provided data.
      *
      * @param  array  $data  The task type.
-     * @return Type|bool
      */
     public function create(array $data): Type|bool
     {
@@ -103,7 +97,6 @@ class TypeRepository
      *
      * @param  array  $data  The new type data.
      * @param  Type  $type  The type loaded.
-     * @return Type|bool
      */
     public function update(array $data, Type $type): Type|bool
     {
@@ -126,7 +119,6 @@ class TypeRepository
      * Deletes a type.
      *
      * @param  Type  $type  The type loaded.
-     * @return bool
      */
     public function delete(Type $type): bool
     {

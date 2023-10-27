@@ -8,10 +8,6 @@ use Illuminate\Http\Resources\Json\ResourceCollection;
 
 /**
  * Class TaskCollection
- *
- * @package App\Http\Resources\Task
- *
- * This class represents a collection of task resources.
  */
 class TaskCollection extends ResourceCollection
 {
@@ -24,7 +20,7 @@ class TaskCollection extends ResourceCollection
      * to an array with a specific structure. The key for each task resource
      * in the array is the index of the task in the collection.
      *
-     * @param Request $request The current request instance.
+     * @param  Request  $request The current request instance.
      * @return array<string, mixed> The array representation of the task collection.
      */
     public function toArray(Request $request)
@@ -33,16 +29,16 @@ class TaskCollection extends ResourceCollection
             function ($item, $key) {
                 return [
                     $key => [
-                        'id'           => $item->id,
-                        'title'        => $item->title,
-                        'status'       => $item->status,
-                        'description'  => $item->description,
-                        'start_date'   => $item->start_date,
-                        'deadline'     => $item->deadline,
-                        'end_date'     => $item->end_date,
-                        'type'         => $item->type->name,
-                        'owner'        => $item->user->name,
-                    ]
+                        'id' => $item->id,
+                        'title' => $item->title,
+                        'status' => $item->status,
+                        'description' => $item->description,
+                        'start_date' => $item->start_date,
+                        'deadline' => $item->deadline,
+                        'end_date' => $item->end_date,
+                        'type' => $item->type->name,
+                        'owner' => $item->user->name,
+                    ],
                 ];
             }
         );

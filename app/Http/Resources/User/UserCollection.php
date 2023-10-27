@@ -8,10 +8,6 @@ use Illuminate\Http\Resources\Json\ResourceCollection;
 
 /**
  * Class UserCollection
- *
- * @package App\Http\Resources\User
- *
- * This class represents a collection of user resources.
  */
 class UserCollection extends ResourceCollection
 {
@@ -24,7 +20,7 @@ class UserCollection extends ResourceCollection
      * to an array with a specific structure. The key for each user resource
      * in the array is the index of the user in the collection.
      *
-     * @param Request $request The current request instance.
+     * @param  Request  $request The current request instance.
      * @return array<string, mixed> The array representation of the user collection.
      */
     public function toArray(Request $request)
@@ -33,11 +29,11 @@ class UserCollection extends ResourceCollection
             function ($item, $key) {
                 return [
                     $key => [
-                        'id'    => $item->id,
-                        'name'  => $item->name,
+                        'id' => $item->id,
+                        'name' => $item->name,
                         'email' => $item->email,
-                        'role'  => $item->role,
-                    ]
+                        'role' => $item->role,
+                    ],
                 ];
             }
         );

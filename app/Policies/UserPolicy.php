@@ -10,13 +10,10 @@ use App\Traits\IsUserAdministrator;
  */
 class UserPolicy extends ApiPolicy implements PolicyInterface
 {
-
     use IsUserAdministrator;
 
     /**
      * Determine whether the user can view any models.
-     *
-     * @return bool
      */
     public function findAllMatches(): bool
     {
@@ -25,8 +22,6 @@ class UserPolicy extends ApiPolicy implements PolicyInterface
 
     /**
      * Determine whether the user can view the model.
-     *
-     * @return bool
      */
     public function findAll(): bool
     {
@@ -35,8 +30,6 @@ class UserPolicy extends ApiPolicy implements PolicyInterface
 
     /**
      * Determine whether the user can view the model.
-     *
-     * @return bool
      */
     public function findOne(): bool
     {
@@ -45,8 +38,6 @@ class UserPolicy extends ApiPolicy implements PolicyInterface
 
     /**
      * Determine whether the user can create models.
-     *
-     * @return bool
      */
     public function create(): bool
     {
@@ -55,8 +46,6 @@ class UserPolicy extends ApiPolicy implements PolicyInterface
 
     /**
      * Determine whether the user can update the model.
-     *
-     * @return bool
      */
     public function update(): bool
     {
@@ -65,8 +54,6 @@ class UserPolicy extends ApiPolicy implements PolicyInterface
 
     /**
      * Determine whether the user can delete the model.
-     *
-     * @return bool
      */
     public function delete(): bool
     {

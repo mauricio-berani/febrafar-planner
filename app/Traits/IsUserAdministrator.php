@@ -2,15 +2,13 @@
 
 namespace App\Traits;
 
-use App\Models\User;
 use App\Enums\User\Roles;
+use App\Models\User;
 
 trait IsUserAdministrator
 {
     /**
      * Get pagination details.
-     *
-     * @return bool
      */
     public function isAdministrator(User $user): bool
     {

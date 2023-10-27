@@ -6,15 +6,14 @@ use App\Enums\User\Roles;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
-use Illuminate\Validation\Rules\Enum;
 use Illuminate\Validation\Rule;
+use Illuminate\Validation\Rules\Enum;
 
 /**
  * This class represents the form request for updating a user.
  */
 class UpdateRequest extends FormRequest
 {
-
     /**
      * Indicates whether the validator should stop on the first validation failure.
      *
@@ -24,8 +23,6 @@ class UpdateRequest extends FormRequest
 
     /**
      * Determine if the user is authorized to make this request.
-     *
-     * @return bool
      */
     public function authorize(): bool
     {
@@ -40,17 +37,16 @@ class UpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name'        => 'string|max:255',
-            'email'       => ['string', 'email', 'max:255', Rule::unique('users')->ignore($this->user()->id)],
-            'password'    => 'string|min:8',
-            'role'        => ['string', new Enum(Roles::class)],
+            'name' => 'string|max:255',
+            'email' => ['string', 'email', 'max:255', Rule::unique('users')->ignore($this->user()->id)],
+            'password' => 'string|min:8',
+            'role' => ['string', new Enum(Roles::class)],
         ];
     }
 
     /**
      * Handle a failed validation attempt.
      *
-     * @param Validator $validator
      * @throws HttpResponseException
      */
     protected function failedValidation(Validator $validator)
@@ -66,15 +62,15 @@ class UpdateRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'name.string'     => 'Name must be in text format.',
-            'name.max'        => 'Name must have up to 255 characters.',
-            'email.string'    => 'Email must be in text format.',
-            'email.email'     => 'Provide a valid email.',
-            'email.max'       => 'Email must have up to 255 characters.',
-            'email.unique'    => 'This email is already in use. Try another.',
+            'name.string' => 'Name must be in text format.',
+            'name.max' => 'Name must have up to 255 characters.',
+            'email.string' => 'Email must be in text format.',
+            'email.email' => 'Provide a valid email.',
+            'email.max' => 'Email must have up to 255 characters.',
+            'email.unique' => 'This email is already in use. Try another.',
             'password.string' => 'Your password must contain letters and numbers.',
-            'password.min'    => 'Your password must have 8 or more characters.',
-            'role.string'     => 'Invalid role.',
+            'password.min' => 'Your password must have 8 or more characters.',
+            'role.string' => 'Invalid role.',
         ];
     }
 }

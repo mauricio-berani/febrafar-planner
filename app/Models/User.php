@@ -10,18 +10,13 @@ use Laravel\Sanctum\HasApiTokens;
 
 /**
  * Class User
- *
- * @package App\Models
- *
- * This class represents a User model in the application, extending the
- * Laravel's built-in Authenticatable class.
  */
 class User extends Authenticatable
 {
     use HasApiTokens;
     use HasFactory;
-    use Notifiable;
     use HasUuids;
+    use Notifiable;
 
     /**
      * The attributes that are mass assignable.

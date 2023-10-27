@@ -2,10 +2,10 @@
 
 namespace App\Exceptions;
 
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Http\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -34,7 +34,7 @@ class Handler extends ExceptionHandler
     /**
      * Handles the rendering of exception responses for the application.
      *
-     * @param  $request Request received
+     * @param    $request Request received
      * @param  Throwable  $exception Exception that was thrown
      * @return JsonResponse Returns a response with a message indicating the error.
      */

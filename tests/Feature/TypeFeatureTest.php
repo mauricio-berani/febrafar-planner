@@ -2,11 +2,10 @@
 
 namespace Tests\Feature;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
-use Tests\TestCase;
 use App\Models\Task\Type;
 use App\Models\User;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
 class TypeFeatureTest extends TestCase
 {
@@ -25,7 +24,7 @@ class TypeFeatureTest extends TestCase
                             'id',
                             'name',
                             'status',
-                        ]
+                        ],
                     ],
                     'first_page_url',
                     'from',
@@ -39,7 +38,7 @@ class TypeFeatureTest extends TestCase
                     'to',
                     'total',
                     'current_page',
-                ]
+                ],
             ]);
     }
 
@@ -55,8 +54,8 @@ class TypeFeatureTest extends TestCase
                         'id',
                         'name',
                         'status',
-                    ]
-                ]
+                    ],
+                ],
             ]);
     }
 
@@ -74,7 +73,7 @@ class TypeFeatureTest extends TestCase
                     'id',
                     'name',
                     'status',
-                ]
+                ],
             ]);
         $this->assertDatabaseHas('task_types', $typeData);
     }
@@ -94,7 +93,7 @@ class TypeFeatureTest extends TestCase
                     'id',
                     'name',
                     'status',
-                ]
+                ],
             ]);
         $this->assertDatabaseHas('task_types', $updatedTypeData);
     }

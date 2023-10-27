@@ -8,14 +8,9 @@ use Illuminate\Http\Exceptions\HttpResponseException;
 
 /**
  * Class LoginRequest
- *
- * @package App\Http\Requests\Auth
- *
- * This class represents a form request for user login.
  */
 class LoginRequest extends FormRequest
 {
-
     /**
      * @var bool Stop validation on the first failure.
      */
@@ -39,16 +34,15 @@ class LoginRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'email'    => 'required|email|exists:users,email',
+            'email' => 'required|email|exists:users,email',
             'password' => 'required',
         ];
     }
 
-
     /**
      * Handle a failed validation attempt.
      *
-     * @param Validator $validator The validator instance.
+     * @param  Validator  $validator The validator instance.
      *
      * @throws HttpResponseException Throws a HTTP response exception with a JSON payload containing the validation errors.
      */
@@ -60,16 +54,16 @@ class LoginRequest extends FormRequest
     /**
      * Handle a failed validation attempt.
      *
-     * @param Validator $validator The validator instance.
+     * @param  Validator  $validator The validator instance.
      *
      * @throws HttpResponseException Throws a HTTP response exception with a JSON payload containing the validation errors.
      */
     public function messages(): array
     {
         return [
-            'email.required'    => 'Enter your email.',
-            'email.email'       => 'Enter a valid email.',
-            'email.exists'      => 'The provided credentials are incorrect.',
+            'email.required' => 'Enter your email.',
+            'email.email' => 'Enter a valid email.',
+            'email.exists' => 'The provided credentials are incorrect.',
             'password.required' => 'Enter your password.',
         ];
     }

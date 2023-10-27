@@ -11,10 +11,8 @@ use Illuminate\Validation\Rules\Enum;
 /**
  * This class represents the form request for creating a task type.
  */
-
 class CreateRequest extends FormRequest
 {
-
     /**
      * Indicates whether the validator should stop on the first validation failure.
      *
@@ -24,8 +22,6 @@ class CreateRequest extends FormRequest
 
     /**
      * Determine if the user is authorized to make this request.
-     *
-     * @return bool
      */
     public function authorize(): bool
     {
@@ -40,15 +36,14 @@ class CreateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name'        => 'required|string|max:255',
-            'status'      => ['string', new Enum(TypeStatus::class)],
+            'name' => 'required|string|max:255',
+            'status' => ['string', new Enum(TypeStatus::class)],
         ];
     }
 
     /**
      * Handle a failed validation attempt.
      *
-     * @param Validator $validator
      * @throws HttpResponseException
      */
     protected function failedValidation(Validator $validator)
@@ -64,10 +59,10 @@ class CreateRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'name.required'     => 'Provide the name.',
-            'name.string'       => 'Name must be in text format.',
-            'name.max'          => 'Name must have up to 255 characters.',
-            'status.string'     => 'Invalid status.',
+            'name.required' => 'Provide the name.',
+            'name.string' => 'Name must be in text format.',
+            'name.max' => 'Name must have up to 255 characters.',
+            'status.string' => 'Invalid status.',
         ];
     }
 
@@ -75,7 +70,7 @@ class CreateRequest extends FormRequest
     {
         $data = $this->all();
 
-        if (!isset($data['status'])) {
+        if (! isset($data['status'])) {
             $data['status'] = TypeStatus::Visible->value;
         }
 

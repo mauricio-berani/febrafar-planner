@@ -25,7 +25,7 @@ class UserSeeder extends Seeder
             'name' => config('admin.name'),
             'email' => config('admin.email'),
             'password' => Hash::make(config('admin.password')),
-            'role' => Roles::Administrator->value
+            'role' => Roles::Administrator->value,
         ]);
     }
 }

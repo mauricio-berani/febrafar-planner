@@ -7,7 +7,6 @@ namespace App\Interfaces;
  */
 interface PolicyInterface
 {
-
     /**
      * Determine whether the user can view any models.
      *

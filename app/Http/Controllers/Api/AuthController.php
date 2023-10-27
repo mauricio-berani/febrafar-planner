@@ -4,10 +4,10 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
+use App\Http\Requests\Auth\RegisterRequest;
 use App\Services\AuthService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use App\Http\Requests\Auth\RegisterRequest;
 
 /**
  * @OA\Tag(
@@ -17,12 +17,10 @@ use App\Http\Requests\Auth\RegisterRequest;
  *
  * Class AuthController
  *
- * @package App\Http\Controllers\Api
  * @resource Authentication
  */
 class AuthController extends Controller
 {
-
     /**
      * @var AuthService Authentication service.
      */
@@ -31,7 +29,7 @@ class AuthController extends Controller
     /**
      * Create a new controller instance.
      *
-     * @param AuthService $service Authentication service.
+     * @param  AuthService  $service Authentication service.
      */
     public function __construct(AuthService $service)
     {
@@ -43,10 +41,13 @@ class AuthController extends Controller
      *     path="/api/auth/login",
      *     summary="Handle a login request to the application",
      *     tags={"Authentication"},
+     *
      *     @OA\RequestBody(
      *         required=true,
      *         description="Login credentials",
+     *
      *         @OA\JsonContent(
+     *
      *             @OA\Property(
      *                 property="email",
      *                 type="string",
@@ -60,10 +61,13 @@ class AuthController extends Controller
      *             )
      *         )
      *     ),
+     *
      *     @OA\Response(
      *         response=200,
      *         description="User successfully logged in",
+     *
      *         @OA\JsonContent(
+     *
      *             @OA\Property(
      *                 property="access_token",
      *                 type="string",
@@ -81,6 +85,7 @@ class AuthController extends Controller
      *             )
      *         )
      *     ),
+     *
      *     @OA\Response(
      *         response=401,
      *         description="Unauthorized"
@@ -96,7 +101,7 @@ class AuthController extends Controller
      * This method validates the login request using LoginRequest,
      * and uses the AuthService to authenticate the user.
      *
-     * @param LoginRequest $request The login request.
+     * @param  LoginRequest  $request The login request.
      * @return JsonResponse A JSON response indicating a successful login or a failure message.
      */
     public function login(LoginRequest $request): JsonResponse
@@ -111,6 +116,7 @@ class AuthController extends Controller
      *     path="/api/auth/logout",
      *     summary="Handle a logout request to the application",
      *     tags={"Authentication"},
+     *
      *     @OA\Response(
      *         response=200,
      *         description="User successfully logged out"
@@ -126,7 +132,7 @@ class AuthController extends Controller
      * This method invokes the logout method on the AuthService
      * to terminate the user's session and return a response.
      *
-     * @param Request $request The request instance.
+     * @param  Request  $request The request instance.
      * @return JsonResponse A JSON response indicating a successful logout or a failure message.
      */
     public function logout(Request $request): JsonResponse
@@ -139,10 +145,13 @@ class AuthController extends Controller
      *     path="/api/auth/register",
      *     summary="Handle a registration request to the application",
      *     tags={"Authentication"},
+     *
      *     @OA\RequestBody(
      *         required=true,
      *         description="User registration data",
+     *
      *         @OA\JsonContent(
+     *
      *             @OA\Property(
      *                 property="name",
      *                 type="string",
@@ -161,10 +170,13 @@ class AuthController extends Controller
      *             )
      *         )
      *     ),
+     *
      *     @OA\Response(
      *         response=201,
      *         description="User successfully registered",
+     *
      *         @OA\JsonContent(
+     *
      *             @OA\Property(
      *                 property="user",
      *                 ref="#/components/schemas/User",
@@ -187,6 +199,7 @@ class AuthController extends Controller
      *             )
      *         )
      *     ),
+     *
      *     @OA\Response(
      *         response=401,
      *         description="Unauthorized"
@@ -202,7 +215,7 @@ class AuthController extends Controller
      * This method validates the registration request using RegisterRequest,
      * and uses the AuthService to register the user.
      *
-     * @param RegisterRequest $request The registration request.
+     * @param  RegisterRequest  $request The registration request.
      * @return JsonResponse A JSON response with the user data and token or a validation error response.
      */
     public function register(RegisterRequest $request): JsonResponse

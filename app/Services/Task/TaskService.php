@@ -2,7 +2,9 @@
 
 namespace App\Services\Task;
 
-use App\Http\Resources\Task\{TaskResource, TaskCollection, PaginationCollection};
+use App\Http\Resources\Task\PaginationCollection;
+use App\Http\Resources\Task\TaskCollection;
+use App\Http\Resources\Task\TaskResource;
 use App\Models\Task\Task;
 use App\Repositories\Task\TaskRepository;
 use App\Traits\IsWeekend;
@@ -35,27 +37,24 @@ class TaskService
      * Fetches tasks based on the provided search parameters, and paginates the result.
      *
      * @param  array  $data  The search parameters.
-     * @return JsonResponse
      */
     public function findAllMatches(array $data): JsonResponse
     {
-        $search     = $data['search'] ?? null;
-        $perPage    = $data['perPage'] ?? 10;
-        $orderBy    = $data['orderBy'] ?? 10;
+        $search = $data['search'] ?? null;
+        $perPage = $data['perPage'] ?? 10;
+        $orderBy = $data['orderBy'] ?? 10;
         $filterDate['startDate'] = $data['startDate'] ?? null;
-        $filterDate['deadline']  = $data['deadline'] ?? null;
+        $filterDate['deadline'] = $data['deadline'] ?? null;
         $response = $this->repository->findAllMatches($search, $perPage, $orderBy, $filterDate);
 
         return response()->json([
             'message' => 'The request was successfully executed.',
-            'data'   => new PaginationCollection($response),
+            'data' => new PaginationCollection($response),
         ])->setStatusCode(Response::HTTP_OK);
     }
 
     /**
      * Fetches all tasks.
-     *
-     * @return JsonResponse
      */
     public function findAll(): JsonResponse
     {
@@ -63,7 +62,7 @@ class TaskService
 
         return response()->json([
             'message' => 'The request was successfully executed.',
-            'data'   => new TaskCollection($reponse),
+            'data' => new TaskCollection($reponse),
         ])->setStatusCode(Response::HTTP_OK);
     }
 
@@ -71,13 +70,12 @@ class TaskService
      * Fetches a single task based on the provided task.
      *
      * @param  Task  $task  The loaded task.
-     * @return JsonResponse
      */
     public function findOne(Task $task): JsonResponse
     {
         return response()->json([
             'message' => 'The request was successfully executed.',
-            'data'   => new TaskResource($task),
+            'data' => new TaskResource($task),
         ])->setStatusCode(Response::HTTP_OK);
     }
 
@@ -85,33 +83,32 @@ class TaskService
      * Creates a new task based on the provided data.
      *
      * @param  array  $data  The task data.
-     * @return JsonResponse
      */
     public function create(array $data): JsonResponse
     {
         if ($this->checkIfIsWeekend($data['start_date']) || $this->checkIfIsWeekend($data['deadline'])) {
             return response()->json([
-                'error' => 'Dates cannot be weekends.'
+                'error' => 'Dates cannot be weekends.',
             ])->setStatusCode(Response::HTTP_UNPROCESSABLE_ENTITY);
         }
 
         if ($this->repository->hasConflict($data)) {
             return response()->json([
-                'error' => 'There are already tasks on the dates informed. Enter different dates.'
+                'error' => 'There are already tasks on the dates informed. Enter different dates.',
             ])->setStatusCode(Response::HTTP_CONFLICT);
         }
 
         $response = $this->repository->create($data);
 
-        if (!$response) {
+        if (! $response) {
             return response()->json([
-                'error' => 'An error occurred while executing the request.'
+                'error' => 'An error occurred while executing the request.',
             ])->setStatusCode(Response::HTTP_INTERNAL_SERVER_ERROR);
         }
 
         return response()->json([
             'message' => 'The request was successfully executed.',
-            'data'   => new TaskResource($response),
+            'data' => new TaskResource($response),
         ])->setStatusCode(Response::HTTP_CREATED);
     }
 
@@ -120,7 +117,6 @@ class TaskService
      *
      * @param  array  $data  The new task data.
      * @param  Task  $task  The task loaded.
-     * @return JsonResponse
      */
     public function update(array $data, Task $task): JsonResponse
     {
@@ -129,27 +125,27 @@ class TaskService
             (isset($data['deadline']) && $this->checkIfIsWeekend($data['deadline']))
         ) {
             return response()->json([
-                'error' => 'Dates cannot be weekends.'
+                'error' => 'Dates cannot be weekends.',
             ])->setStatusCode(Response::HTTP_UNPROCESSABLE_ENTITY);
         }
 
         if (isset($data['start_date']) && isset($data['deadline']) && $this->repository->hasConflict($data)) {
             return response()->json([
-                'error' => 'There are already tasks on the dates informed. Enter different dates.'
+                'error' => 'There are already tasks on the dates informed. Enter different dates.',
             ])->setStatusCode(Response::HTTP_CONFLICT);
         }
 
         $response = $this->repository->update($data, $task);
 
-        if (!$response) {
+        if (! $response) {
             return response()->json([
-                'error' => 'An error occurred while executing the request.'
+                'error' => 'An error occurred while executing the request.',
             ])->setStatusCode(Response::HTTP_INTERNAL_SERVER_ERROR);
         }
 
         return response()->json([
             'message' => 'The request was successfully executed.',
-            'data'   => new TaskResource($response),
+            'data' => new TaskResource($response),
         ])->setStatusCode(Response::HTTP_OK);
     }
 
@@ -157,15 +153,14 @@ class TaskService
      * Deletes a task.
      *
      * @param  Task  $task  The task loaded.
-     * @return JsonResponse
      */
     public function delete(Task $task): JsonResponse
     {
         $response = $this->repository->delete($task);
 
-        if (!$response) {
+        if (! $response) {
             return response()->json([
-                'error' => 'An error occurred while executing the request.'
+                'error' => 'An error occurred while executing the request.',
             ])->setStatusCode(Response::HTTP_INTERNAL_SERVER_ERROR);
         }
 

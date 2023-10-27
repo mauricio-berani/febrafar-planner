@@ -12,7 +12,6 @@ use Illuminate\Support\Facades\DB;
  */
 class TaskRepository
 {
-
     /**
      * @var Task The Task model instance.
      */
@@ -32,14 +31,12 @@ class TaskRepository
      * Fetches tasks matching the provided search parameters, and paginates the result.
      *
      * @param  string|null  $search    The search query.
-     * @param  string       $perPage   The number of items to be displayed per page.
-     * @param  string       $orderBy   The column to sort the result by.
-     * @return Paginator
+     * @param  string  $perPage   The number of items to be displayed per page.
+     * @param  string  $orderBy   The column to sort the result by.
      */
-    public function findAllMatches(string|null $search, string $perPage, string $orderBy, array $filterDate): Paginator
+    public function findAllMatches(?string $search, string $perPage, string $orderBy, array $filterDate): Paginator
     {
         $query = $this->model->ofLoggedInUser()->newQuery();
-
 
         if ($search) {
             $query->where('name', 'like', "%$search%");
@@ -59,7 +56,7 @@ class TaskRepository
             $order = explode('-', $orderBy);
 
             if (count($order) === 2) {
-                $column    = strtolower($order[0]);
+                $column = strtolower($order[0]);
                 $direction = strtolower($order[1]);
 
                 if (
@@ -76,8 +73,6 @@ class TaskRepository
 
     /**
      * Fetches all tasks.
-     *
-     * @return Collection
      */
     public function findAll(): Collection
     {
@@ -88,7 +83,6 @@ class TaskRepository
      * Creates a new task based on the provided data.
      *
      * @param  array  $data  The task.
-     * @return Task|bool
      */
     public function create(array $data): Task|bool
     {
@@ -113,7 +107,6 @@ class TaskRepository
      *
      * @param  array  $data  The new task data.
      * @param  Task  $task  The task loaded.
-     * @return Task|bool
      */
     public function update(array $data, Task $task): Task|bool
     {
@@ -136,7 +129,6 @@ class TaskRepository
      * Deletes a task.
      *
      * @param  Task  $task  The task loaded.
-     * @return bool
      */
     public function delete(Task $task): bool
     {
@@ -146,13 +138,13 @@ class TaskRepository
     /**
      * This method checks for date conflicts among tasks.
      *
-     * @param array $data Associative array containing 'start_date' and 'deadline' keys.
+     * @param  array  $data Associative array containing 'start_date' and 'deadline' keys.
      * @return bool Returns true if there is a conflict, false otherwise.
      */
     public function hasConflict(array $data): bool
     {
         $startDate = $data['start_date'];
-        $deadline  = $data['deadline'];
+        $deadline = $data['deadline'];
         $tasks = Task::ofLoggedInUser()->where(function ($query) use ($startDate, $deadline) {
             $query->where(function ($query) use ($startDate) {
                 $query->where('start_date', '<=', $startDate)

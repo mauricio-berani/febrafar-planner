@@ -2,14 +2,17 @@
 
 namespace App\Policies;
 
-use App\Enums\User\Roles;
 use App\Interfaces\PolicyInterface;
+use App\Traits\IsUserAdministrator;
 
 /**
  * This class defines the policies related to user actions.
  */
 class UserPolicy extends ApiPolicy implements PolicyInterface
 {
+
+    use IsUserAdministrator;
+
     /**
      * Determine whether the user can view any models.
      *
@@ -17,7 +20,7 @@ class UserPolicy extends ApiPolicy implements PolicyInterface
      */
     public function findAllMatches(): bool
     {
-        return Roles::Administrator->value === $this->user->role;
+        return $this->isAdministrator($this->user);
     }
 
     /**
@@ -27,7 +30,7 @@ class UserPolicy extends ApiPolicy implements PolicyInterface
      */
     public function findAll(): bool
     {
-        return Roles::Administrator->value === $this->user->role;
+        return $this->isAdministrator($this->user);
     }
 
     /**
@@ -37,7 +40,7 @@ class UserPolicy extends ApiPolicy implements PolicyInterface
      */
     public function findOne(): bool
     {
-        return Roles::Administrator->value === $this->user->role;
+        return $this->isAdministrator($this->user);
     }
 
     /**
@@ -47,7 +50,7 @@ class UserPolicy extends ApiPolicy implements PolicyInterface
      */
     public function create(): bool
     {
-        return Roles::Administrator->value === $this->user->role;
+        return $this->isAdministrator($this->user);
     }
 
     /**
@@ -57,7 +60,7 @@ class UserPolicy extends ApiPolicy implements PolicyInterface
      */
     public function update(): bool
     {
-        return Roles::Administrator->value === $this->user->role;
+        return $this->isAdministrator($this->user);
     }
 
     /**
@@ -67,6 +70,6 @@ class UserPolicy extends ApiPolicy implements PolicyInterface
      */
     public function delete(): bool
     {
-        return Roles::Administrator->value === $this->user->role;
+        return $this->isAdministrator($this->user);
     }
 }

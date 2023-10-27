@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Api\Task;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\User\{CreateRequest, UpdateRequest};
+use App\Http\Requests\Task\Type\{CreateRequest, UpdateRequest};
 use App\Http\Requests\Common\MatchRequest;
 use App\Models\Task\Type;
 use App\Services\Task\TypeService;
@@ -45,7 +45,6 @@ class TypeController extends Controller
      */
     public function findAllMatches(MatchRequest $request): JsonResponse
     {
-        $this->authorize(__FUNCTION__, Type::class);
         $data = $request->validated();
 
         return $this->service->findAllMatches($data);
@@ -58,8 +57,6 @@ class TypeController extends Controller
      */
     public function findAll(): JsonResponse
     {
-        $this->authorize(__FUNCTION__, Type::class);
-
         return $this->service->findAll();
     }
 
@@ -71,8 +68,6 @@ class TypeController extends Controller
      */
     public function findOne(Type $type): JsonResponse
     {
-        $this->authorize(__FUNCTION__, Type::class);
-
         return $this->service->findOne($type);
     }
 
@@ -84,7 +79,6 @@ class TypeController extends Controller
      */
     public function create(CreateRequest $request): JsonResponse
     {
-        $this->authorize(__FUNCTION__, TaskType::class);
         $data = $request->validated();
 
         return $this->service->create($data);
@@ -99,7 +93,6 @@ class TypeController extends Controller
      */
     public function update(UpdateRequest $request, Type $type): JsonResponse
     {
-        $this->authorize(__FUNCTION__, Type::class);
         $data = $request->validated();
 
         return $this->service->update($data, $type);
@@ -113,8 +106,6 @@ class TypeController extends Controller
      */
     public function delete(Type $type): JsonResponse
     {
-        $this->authorize(__FUNCTION__, Type::class);
-
         return $this->service->delete($type);
     }
 }

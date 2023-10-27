@@ -11,6 +11,14 @@ use App\Http\Controllers\Api\User\{
     UpdateController as UserUpdateController,
     DeleteController as UserDeleteController
 };
+use App\Http\Controllers\Api\TaskCategory\{
+    FindAllController as TaskCategoryFindAllController,
+    FindAllMatchesController as TaskCategoryFindAllMatchesController,
+    FindOneController as TaskCategoryFindOneController,
+    CreateController as TaskCategoryCreateController,
+    UpdateController as TaskCategoryUpdateController,
+    DeleteController as TaskCategoryDeleteController
+};
 
 /*
 |--------------------------------------------------------------------------
@@ -40,4 +48,13 @@ Route::middleware(['auth:sanctum'])->prefix('users')->name('users.')->group(func
     Route::post('/', [UserCreateController::class, 'create']);
     Route::put('/{user}', [UserUpdateController::class, 'update']);
     Route::delete('/{user}', [UserDeleteController::class, 'delete']);
+});
+
+Route::middleware(['auth:sanctum'])->prefix('task_categories')->name('task_categories.')->group(function () {
+    Route::get('/match', [TaskCategoryFindAllController::class, 'findAllMatches']);
+    Route::get('/', [TaskCategoryFindAllMatchesController::class, 'findAll']);
+    Route::get('/{user}', [TaskCategoryFindOneController::class, 'findOne']);
+    Route::post('/', [TaskCategoryCreateController::class, 'create']);
+    Route::put('/{user}', [TaskCategoryUpdateController::class, 'update']);
+    Route::delete('/{user}', [TaskCategoryDeleteController::class, 'delete']);
 });

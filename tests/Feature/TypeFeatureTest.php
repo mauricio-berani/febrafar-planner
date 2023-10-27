@@ -104,7 +104,7 @@ class TypeFeatureTest extends TestCase
         $user = User::factory()->create();
         $type = Type::factory()->create();
         $response = $this->actingAs($user)->deleteJson("/api/task_types/{$type->id}");
-        $response->assertStatus(204);
+        $response->assertNoContent();
         $this->assertDatabaseMissing('task_types', ['id' => $type->id]);
     }
 }

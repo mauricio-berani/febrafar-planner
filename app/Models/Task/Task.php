@@ -5,7 +5,7 @@ namespace App\Models\Task;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
-use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 /**
  * Class Task
@@ -17,6 +17,7 @@ use Illuminate\Database\Eloquent\Builder;
 class Task extends Model
 {
     use HasUuids;
+    use HasFactory;
 
     /**
      * The table associated with the model.

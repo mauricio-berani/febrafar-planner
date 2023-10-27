@@ -124,6 +124,21 @@ class TaskService
      */
     public function update(array $data, Task $task): JsonResponse
     {
+        if (
+            (isset($data['start_date']) && $this->checkIfIsWeekend($data['start_date'])) ||
+            (isset($data['deadline']) && $this->checkIfIsWeekend($data['deadline']))
+        ) {
+            return response()->json([
+                'error' => 'Dates cannot be weekends.'
+            ])->setStatusCode(Response::HTTP_UNPROCESSABLE_ENTITY);
+        }
+
+        if (isset($data['start_date']) && isset($data['deadline']) && $this->repository->hasConflict($data)) {
+            return response()->json([
+                'error' => 'There are already tasks on the dates informed. Enter different dates.'
+            ])->setStatusCode(Response::HTTP_CONFLICT);
+        }
+
         $response = $this->repository->update($data, $task);
 
         if (!$response) {

@@ -36,7 +36,7 @@ class TaskRepository
      * @param  string       $orderBy   The column to sort the result by.
      * @return Paginator
      */
-    public function findAllMatches(string|null $search, string $perPage, string $orderBy): Paginator
+    public function findAllMatches(string|null $search, string $perPage, string $orderBy, array $filterDate): Paginator
     {
         $query = $this->model->ofLoggedInUser()->newQuery();
 
@@ -44,6 +44,15 @@ class TaskRepository
         if ($search) {
             $query->where('name', 'like', "%$search%");
             $query->orWhere('status', 'like', "%$search%");
+        }
+
+        if (isset($filterDate['startDate']) && isset($filterDate['deadline'])) {
+            $query->whereBetween('start_date', [$filterDate['startDate'], $filterDate['deadline']])
+                ->orWhereBetween('deadline', [$filterDate['startDate'], $filterDate['deadline']]);
+        } elseif (isset($filterDate['startDate'])) {
+            $query->where('start_date', '>=', $filterDate['startDate']);
+        } elseif (isset($filterDate['deadline'])) {
+            $query->where('deadline', '<=', $filterDate['deadline']);
         }
 
         if ($orderBy) {

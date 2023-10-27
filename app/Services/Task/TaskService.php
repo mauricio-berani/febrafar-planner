@@ -39,10 +39,12 @@ class TaskService
      */
     public function findAllMatches(array $data): JsonResponse
     {
-        $search   = $data['search'] ?? null;
-        $perPage  = $data['perPage'] ?? 10;
-        $orderBy  = $data['orderBy'] ?? 10;
-        $response = $this->repository->findAllMatches($search, $perPage, $orderBy);
+        $search     = $data['search'] ?? null;
+        $perPage    = $data['perPage'] ?? 10;
+        $orderBy    = $data['orderBy'] ?? 10;
+        $filterDate['startDate'] = $data['startDate'] ?? null;
+        $filterDate['deadline']  = $data['deadline'] ?? null;
+        $response = $this->repository->findAllMatches($search, $perPage, $orderBy, $filterDate);
 
         return response()->json([
             'message' => 'The request was successfully executed.',

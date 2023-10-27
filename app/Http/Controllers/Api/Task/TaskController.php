@@ -3,8 +3,7 @@
 namespace App\Http\Controllers\Api\Task;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Task\{CreateRequest, UpdateRequest};
-use App\Http\Requests\Common\MatchRequest;
+use App\Http\Requests\Task\{CreateRequest, UpdateRequest, MatchRequest};
 use App\Models\Task\Task;
 use App\Services\Task\TaskService;
 use Illuminate\Http\JsonResponse;

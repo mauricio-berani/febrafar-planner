@@ -1,0 +1,651 @@
+_type: export
+__export_format: 4
+__export_date: 2023-10-27T18:47:15.795Z
+__export_source: insomnia.desktop.app:v2023.5.8
+resources:
+  - _id: req_d0fe90dcbe164981b1ed9fa80ccc5a34
+    parentId: fld_ee3477b82d9d4ace97b3da0656ee2b0f
+    modified: 1698414156040
+    created: 1698375122594
+    url: "{{ _.base_url }}task_types/9a7844ba-f680-4e0d-8cf2-248d7671a7e3"
+    name: Delete
+    description: ""
+    method: DELETE
+    body: {}
+    parameters: []
+    headers: []
+    authentication:
+      type: bearer
+      token: "{{ _.token }}"
+    metaSortKey: -1678393220409
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: fld_ee3477b82d9d4ace97b3da0656ee2b0f
+    parentId: fld_ca442dbc92ca434daf774be5d90ab87f
+    modified: 1698375143185
+    created: 1698375122582
+    name: Types
+    description: ""
+    environment: {}
+    environmentPropertyOrder: null
+    metaSortKey: -1698375143135
+    _type: request_group
+  - _id: fld_ca442dbc92ca434daf774be5d90ab87f
+    parentId: wrk_ebf0e603faf54752a318af24752e1522
+    modified: 1698375134318
+    created: 1698375134318
+    name: Tasks
+    description: ""
+    environment: {}
+    environmentPropertyOrder: null
+    metaSortKey: -1698375134318
+    _type: request_group
+  - _id: wrk_ebf0e603faf54752a318af24752e1522
+    parentId: null
+    modified: 1698342738917
+    created: 1698342738917
+    name: Febrafar - Planner
+    description: ""
+    scope: collection
+    _type: workspace
+  - _id: req_c297d48a2f674fed802601e7861efc99
+    parentId: fld_ee3477b82d9d4ace97b3da0656ee2b0f
+    modified: 1698414085741
+    created: 1698375122591
+    url: "{{ _.base_url }}task_types/9a7846e2-8ce5-4ba2-8500-ed65532b1917"
+    name: Update
+    description: ""
+    method: PUT
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"name": "Tipo legal",
+        	"status": "hidden"
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+    authentication:
+      type: bearer
+      token: "{{ _.token }}"
+    metaSortKey: -1678393148981
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_05adcac8b79f4feabb534af7103a89ff
+    parentId: fld_ee3477b82d9d4ace97b3da0656ee2b0f
+    modified: 1698375181658
+    created: 1698375122596
+    url: "{{ _.base_url }}task_types/match?perPage=10&page=1&orderBy=id-asc"
+    name: findAllMatches
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication:
+      type: bearer
+      token: "{{ _.token }}"
+    metaSortKey: -1678387162867
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_5bd88c2d20bc4fabafc87e0fb47c9f4b
+    parentId: fld_ee3477b82d9d4ace97b3da0656ee2b0f
+    modified: 1698375184395
+    created: 1698375122583
+    url: "{{ _.base_url }}task_types"
+    name: FindAll
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication:
+      type: bearer
+      token: "{{ _.token }}"
+    metaSortKey: -1678381176753
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_a14e481b6acc48f4b06178f3d6d39920
+    parentId: fld_ee3477b82d9d4ace97b3da0656ee2b0f
+    modified: 1698413949580
+    created: 1698375122589
+    url: "{{ _.base_url }}task_types/9a7846e2-8ce5-4ba2-8500-ed65532b1917"
+    name: FindOne
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication:
+      type: bearer
+      token: "{{ _.token }}"
+    metaSortKey: -1678381176728
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_8fd851360ef44677a7c9b1d36fd08041
+    parentId: fld_ee3477b82d9d4ace97b3da0656ee2b0f
+    modified: 1698413071320
+    created: 1698375122586
+    url: "{{ _.base_url }}task_types"
+    name: Create
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"name": "teste"
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+    authentication:
+      type: bearer
+      token: "{{ _.token }}"
+    metaSortKey: -1678381176703
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_5254ba92107a464d89b65d5c1980f063
+    parentId: fld_a40bf851980d4f0bbf9fb8aae284291b
+    modified: 1698418613420
+    created: 1698415716372
+    url: "{{ _.base_url }}tasks/9a785a62-3fb9-44ca-9111-e4a0437ee80f"
+    name: Delete
+    description: ""
+    method: DELETE
+    body: {}
+    parameters: []
+    headers: []
+    authentication:
+      type: bearer
+      token: "{{ _.token }}"
+    metaSortKey: -1678393220409
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: fld_a40bf851980d4f0bbf9fb8aae284291b
+    parentId: fld_ca442dbc92ca434daf774be5d90ab87f
+    modified: 1698415716361
+    created: 1698415716361
+    name: Tasks
+    description: ""
+    environment: {}
+    environmentPropertyOrder: null
+    metaSortKey: -1698375138726.5
+    _type: request_group
+  - _id: req_a0cc3fcc3b82483b8b8fc99e31a5c309
+    parentId: fld_a40bf851980d4f0bbf9fb8aae284291b
+    modified: 1698428271397
+    created: 1698415716370
+    url: "{{ _.base_url }}tasks/9a78729d-2d50-44c7-85ef-5aea81704d79"
+    name: Update
+    description: ""
+    method: PUT
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"title": "Evento 3"
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+    authentication:
+      type: bearer
+      token: "{{ _.token }}"
+    metaSortKey: -1678393148981
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_d3e937b5b60049299243336bb6ffbf20
+    parentId: fld_a40bf851980d4f0bbf9fb8aae284291b
+    modified: 1698422656343
+    created: 1698415716374
+    url: "{{ _.base_url }}tasks/match?startDate=2023-10-01&deadline=2023-10-05"
+    name: findAllMatches
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication:
+      type: bearer
+      token: "{{ _.token }}"
+    metaSortKey: -1678387162867
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_7be063bcd9de4694801cbe86b737ac10
+    parentId: fld_a40bf851980d4f0bbf9fb8aae284291b
+    modified: 1698415732736
+    created: 1698415716362
+    url: "{{ _.base_url }}tasks"
+    name: FindAll
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication:
+      type: bearer
+      token: "{{ _.token }}"
+    metaSortKey: -1678381176753
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_cf844673cfd249558f32d7f46230e361
+    parentId: fld_a40bf851980d4f0bbf9fb8aae284291b
+    modified: 1698418579277
+    created: 1698415716367
+    url: "{{ _.base_url }}tasks/9a785a9d-802e-48a0-b6f2-46c534fb1d84"
+    name: FindOne
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication:
+      type: bearer
+      token: "{{ _.token }}"
+    metaSortKey: -1678381176728
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_cdb83782b7cc4bdc910b3f3ce0702bfb
+    parentId: fld_a40bf851980d4f0bbf9fb8aae284291b
+    modified: 1698428763638
+    created: 1698415716365
+    url: "{{ _.base_url }}tasks"
+    name: Create
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"title": "Evento 2",
+        	"description": "teste",
+        	"deadline": "2023-10-18",
+        	"start_date": "2023-10-17",
+        	"task_type_id": "9a7846e2-8ce5-4ba2-8500-ed65532b1917"
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+    authentication:
+      type: bearer
+      token: "{{ _.token }}"
+    metaSortKey: -1678381176703
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_fd78eab912ef4a29bf37272c9cf32418
+    parentId: fld_358946ed7a5641d78a593422830ea807
+    modified: 1698410001288
+    created: 1698342850834
+    url: "{{ _.base_url }}auth/register"
+    name: Register
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"name": "Maurício",
+        	"email": "administradore@blib.tech",
+        	"password": "_blib$tech$"
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: insomnia/2023.5.8
+    authentication: {}
+    metaSortKey: -1698342850834
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: fld_358946ed7a5641d78a593422830ea807
+    parentId: wrk_ebf0e603faf54752a318af24752e1522
+    modified: 1695754618717
+    created: 1689817724086
+    name: Auth
+    description: ""
+    environment: {}
+    environmentPropertyOrder: null
+    metaSortKey: -1694950255931
+    _type: request_group
+  - _id: req_c351a09e95b74fad90be4bf004ab0803
+    parentId: fld_358946ed7a5641d78a593422830ea807
+    modified: 1697364175376
+    created: 1689817724087
+    url: "{{ _.base_url }}auth/login"
+    name: Login
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"email": "administrador@blib.tech",
+        	"password": "_blib$tech$"
+        }
+    parameters:
+      - id: pair_bf9d8e4660d647e7bd98a9a23f7e5bd3
+        name: ""
+        value: ""
+        description: ""
+    headers:
+      - name: Content-Type
+        value: application/json
+    authentication:
+      type: bearer
+      token: "{{ _.token }}"
+      disabled: true
+    metaSortKey: -1678460191410
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_dd806dbce9b24191aca957604c86e283
+    parentId: fld_358946ed7a5641d78a593422830ea807
+    modified: 1697415485063
+    created: 1697415365391
+    url: "{{ _.base_url }}auth/logout"
+    name: Logout
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: ""
+    parameters:
+      - id: pair_bf9d8e4660d647e7bd98a9a23f7e5bd3
+        name: ""
+        value: ""
+        description: ""
+    headers:
+      - name: Content-Type
+        value: application/json
+    authentication:
+      type: bearer
+      token: "{{ _.token }}"
+      disabled: false
+    metaSortKey: -1678460191385
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_b46ceb3989a8455aa4573c59e8c7bc18
+    parentId: fld_9267a74725404f4bb99ff3ee9031fdec
+    modified: 1698366843054
+    created: 1689817724080
+    url: "{{ _.base_url }}users/9a76fa74-7874-4466-9afc-bf80949e26aa"
+    name: Delete
+    description: ""
+    method: DELETE
+    body: {}
+    parameters: []
+    headers: []
+    authentication:
+      type: bearer
+      token: "{{ _.token }}"
+    metaSortKey: -1678393220409
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: fld_9267a74725404f4bb99ff3ee9031fdec
+    parentId: wrk_ebf0e603faf54752a318af24752e1522
+    modified: 1689817724068
+    created: 1689817724068
+    name: Users
+    description: ""
+    environment: {}
+    environmentPropertyOrder: null
+    metaSortKey: -1676579882785.5
+    _type: request_group
+  - _id: req_3ada368be0a04522b982080a8c43a4a8
+    parentId: fld_9267a74725404f4bb99ff3ee9031fdec
+    modified: 1698366822185
+    created: 1689817724078
+    url: "{{ _.base_url }}users/9a76ce18-36ac-4c9f-be91-f86912d0f0ad"
+    name: Update
+    description: ""
+    method: PUT
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"email": "administrador@blib.tech",
+        	"name": "Maurício Vieira"
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+    authentication:
+      type: bearer
+      token: "{{ _.token }}"
+    metaSortKey: -1678393148981
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_9bbd052e27b1462b8fac966ad3816366
+    parentId: fld_9267a74725404f4bb99ff3ee9031fdec
+    modified: 1689817724083
+    created: 1689817724083
+    url: "{{ _.base_url }}users/match?perPage=10&page=1&orderBy=id-asc"
+    name: findAllMatches
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication:
+      type: bearer
+      token: "{{ _.token }}"
+    metaSortKey: -1678387162867
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_331e6befdb65457f9b9cd74d3a5f567f
+    parentId: fld_9267a74725404f4bb99ff3ee9031fdec
+    modified: 1689817724069
+    created: 1689817724069
+    url: "{{ _.base_url }}users"
+    name: FindAll
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication:
+      type: bearer
+      token: "{{ _.token }}"
+    metaSortKey: -1678381176753
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_7904ad23594a44749ce48dcf366d6588
+    parentId: fld_9267a74725404f4bb99ff3ee9031fdec
+    modified: 1698358132357
+    created: 1689817724074
+    url: "{{ _.base_url }}users/9a76ce18-36ac-4c9f-be91-f86912d0f0ad"
+    name: FindOne
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication:
+      type: bearer
+      token: "{{ _.token }}"
+    metaSortKey: -1678381176728
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_8591d45374ec45808454c3192d64e937
+    parentId: fld_9267a74725404f4bb99ff3ee9031fdec
+    modified: 1698354609275
+    created: 1689817724071
+    url: "{{ _.base_url }}users"
+    name: Create
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"name": "Pode get one user",
+        	"email": "get@berani.com.br",
+        	"password": "qweasd123",
+        	"role": "user"
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+    authentication:
+      type: bearer
+      token: "{{ _.token }}"
+    metaSortKey: -1678381176703
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: env_d0be868b86921ea7aafb392e9f60db6580f0d2b0
+    parentId: wrk_ebf0e603faf54752a318af24752e1522
+    modified: 1698412458724
+    created: 1698342738933
+    name: Base Environment
+    data:
+      token: 16|UXGCZOBQ3skKJ8SZ53dZ6m92S59WaNEzz8lfzgtU1048c0f9
+      base_url: http://localhost/api/
+    dataPropertyOrder:
+      "&":
+        - token
+        - base_url
+    color: null
+    isPrivate: false
+    metaSortKey: 1698342738933
+    _type: environment
+  - _id: jar_d0be868b86921ea7aafb392e9f60db6580f0d2b0
+    parentId: wrk_ebf0e603faf54752a318af24752e1522
+    modified: 1698342738935
+    created: 1698342738935
+    name: Default Jar
+    cookies: []
+    _type: cookie_jar

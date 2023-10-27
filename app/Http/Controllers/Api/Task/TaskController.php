@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Api\Task;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\User\{CreateRequest, UpdateRequest};
+use App\Http\Requests\Task\{CreateRequest, UpdateRequest};
 use App\Http\Requests\Common\MatchRequest;
 use App\Models\Task\Task;
 use App\Services\Task\TaskService;
@@ -12,7 +12,7 @@ use Illuminate\Http\JsonResponse;
 /**
  * Class TaskController
  *
- * This controller handles incoming HTTP requests related to task type management,
+ * This controller handles incoming HTTP requests related to task management,
  * delegating the business logic to the TaskService.
  *
  * @package App\Http\Controllers\Api\Task
@@ -45,7 +45,6 @@ class TaskController extends Controller
      */
     public function findAllMatches(MatchRequest $request): JsonResponse
     {
-        $this->authorize(__FUNCTION__, Task::class);
         $data = $request->validated();
 
         return $this->service->findAllMatches($data);
@@ -58,8 +57,6 @@ class TaskController extends Controller
      */
     public function findAll(): JsonResponse
     {
-        $this->authorize(__FUNCTION__, Task::class);
-
         return $this->service->findAll();
     }
 
@@ -71,8 +68,6 @@ class TaskController extends Controller
      */
     public function findOne(Task $task): JsonResponse
     {
-        $this->authorize(__FUNCTION__, Task::class);
-
         return $this->service->findOne($task);
     }
 
@@ -84,7 +79,6 @@ class TaskController extends Controller
      */
     public function create(CreateRequest $request): JsonResponse
     {
-        $this->authorize(__FUNCTION__, TaskTask::class);
         $data = $request->validated();
 
         return $this->service->create($data);
@@ -99,7 +93,6 @@ class TaskController extends Controller
      */
     public function update(UpdateRequest $request, Task $task): JsonResponse
     {
-        $this->authorize(__FUNCTION__, Task::class);
         $data = $request->validated();
 
         return $this->service->update($data, $task);
@@ -113,8 +106,6 @@ class TaskController extends Controller
      */
     public function delete(Task $task): JsonResponse
     {
-        $this->authorize(__FUNCTION__, Task::class);
-
         return $this->service->delete($task);
     }
 }

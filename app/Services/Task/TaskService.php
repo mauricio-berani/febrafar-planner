@@ -2,34 +2,37 @@
 
 namespace App\Services\Task;
 
-use App\Http\Resources\Task\Type\{TypeResource, TypeCollection, PaginationCollection};
-use App\Models\Task\Type;
-use App\Repositories\Task\TypeRepository;
+use App\Http\Resources\Task\{TaskResource, TaskCollection, PaginationCollection};
+use App\Models\Task\Task;
+use App\Repositories\Task\TaskRepository;
+use App\Traits\IsWeekend;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
 
 /**
- * The TypeService class provides methods to handle task type-related actions.
+ * The TaskService class provides methods to handle task-related actions.
  */
-class TypeService
+class TaskService
 {
+    use IsWeekend;
+
     /**
-     * @var TypeRepository The task type repository instance.
+     * @var TaskRepository The task repository instance.
      */
     protected $repository;
 
     /**
-     * Create a new TypeService instance.
+     * Create a new TaskService instance.
      *
-     * @param  TypeRepository  $repository  The task type repository instance.
+     * @param  TaskRepository  $repository  The task repository instance.
      */
-    public function __construct(TypeRepository $repository)
+    public function __construct(TaskRepository $repository)
     {
         $this->repository = $repository;
     }
 
     /**
-     * Fetches task types based on the provided search parameters, and paginates the result.
+     * Fetches tasks based on the provided search parameters, and paginates the result.
      *
      * @param  array  $data  The search parameters.
      * @return JsonResponse
@@ -48,7 +51,7 @@ class TypeService
     }
 
     /**
-     * Fetches all task categories.
+     * Fetches all tasks.
      *
      * @return JsonResponse
      */
@@ -58,32 +61,44 @@ class TypeService
 
         return response()->json([
             'message' => 'The request was successfully executed.',
-            'data'   => new TypeCollection($reponse),
+            'data'   => new TaskCollection($reponse),
         ])->setStatusCode(Response::HTTP_OK);
     }
 
     /**
-     * Fetches a single task type based on the provided task type.
+     * Fetches a single task based on the provided task.
      *
-     * @param  Type  $type  The loaded task type.
+     * @param  Task  $task  The loaded task.
      * @return JsonResponse
      */
-    public function findOne(Type $type): JsonResponse
+    public function findOne(Task $task): JsonResponse
     {
         return response()->json([
             'message' => 'The request was successfully executed.',
-            'data'   => new TypeResource($type),
+            'data'   => new TaskResource($task),
         ])->setStatusCode(Response::HTTP_OK);
     }
 
     /**
-     * Creates a new task type based on the provided data.
+     * Creates a new task based on the provided data.
      *
-     * @param  array  $data  The task type data.
+     * @param  array  $data  The task data.
      * @return JsonResponse
      */
     public function create(array $data): JsonResponse
     {
+        if ($this->checkIfIsWeekend($data['start_date']) || $this->checkIfIsWeekend($data['deadline'])) {
+            return response()->json([
+                'error' => 'Dates cannot be weekends.'
+            ])->setStatusCode(Response::HTTP_UNPROCESSABLE_ENTITY);
+        }
+
+        if ($this->repository->hasConflict($data)) {
+            return response()->json([
+                'error' => 'There are already tasks on the dates informed. Enter different dates.'
+            ])->setStatusCode(Response::HTTP_CONFLICT);
+        }
+
         $response = $this->repository->create($data);
 
         if (!$response) {
@@ -94,20 +109,20 @@ class TypeService
 
         return response()->json([
             'message' => 'The request was successfully executed.',
-            'data'   => new TypeResource($response),
+            'data'   => new TaskResource($response),
         ])->setStatusCode(Response::HTTP_CREATED);
     }
 
     /**
-     * Updates a task type based on the provided data and task type.
+     * Updates a task based on the provided data and task.
      *
-     * @param  array  $data  The new task type data.
-     * @param  Type  $type  The task type loaded.
+     * @param  array  $data  The new task data.
+     * @param  Task  $task  The task loaded.
      * @return JsonResponse
      */
-    public function update(array $data, Type $type): JsonResponse
+    public function update(array $data, Task $task): JsonResponse
     {
-        $response = $this->repository->update($data, $type);
+        $response = $this->repository->update($data, $task);
 
         if (!$response) {
             return response()->json([
@@ -117,19 +132,19 @@ class TypeService
 
         return response()->json([
             'message' => 'The request was successfully executed.',
-            'data'   => new TypeResource($response),
+            'data'   => new TaskResource($response),
         ])->setStatusCode(Response::HTTP_OK);
     }
 
     /**
-     * Deletes a task type.
+     * Deletes a task.
      *
-     * @param  Type  $type  The task type loaded.
+     * @param  Task  $task  The task loaded.
      * @return JsonResponse
      */
-    public function delete(Type $type): JsonResponse
+    public function delete(Task $task): JsonResponse
     {
-        $response = $this->repository->delete($type);
+        $response = $this->repository->delete($task);
 
         if (!$response) {
             return response()->json([

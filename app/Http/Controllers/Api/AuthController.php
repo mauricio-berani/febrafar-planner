@@ -10,6 +10,11 @@ use Illuminate\Http\Request;
 use App\Http\Requests\Auth\RegisterRequest;
 
 /**
+ * @OA\Tag(
+ *     name="Authentication",
+ *     description="APIs related to user authentication"
+ * )
+ *
  * Class AuthController
  *
  * @package App\Http\Controllers\Api
@@ -34,6 +39,58 @@ class AuthController extends Controller
     }
 
     /**
+     * @OA\Post(
+     *     path="/api/auth/login",
+     *     summary="Handle a login request to the application",
+     *     tags={"Authentication"},
+     *     @OA\RequestBody(
+     *         required=true,
+     *         description="Login credentials",
+     *         @OA\JsonContent(
+     *             @OA\Property(
+     *                 property="email",
+     *                 type="string",
+     *                 format="email",
+     *                 description="User's email"
+     *             ),
+     *             @OA\Property(
+     *                 property="password",
+     *                 type="string",
+     *                 description="User's password"
+     *             )
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="User successfully logged in",
+     *         @OA\JsonContent(
+     *             @OA\Property(
+     *                 property="access_token",
+     *                 type="string",
+     *                 description="JWT access token"
+     *             ),
+     *             @OA\Property(
+     *                 property="token_type",
+     *                 type="string",
+     *                 description="Token type (Bearer)"
+     *             ),
+     *             @OA\Property(
+     *                 property="expires_in",
+     *                 type="integer",
+     *                 description="Token expiration time in seconds"
+     *             )
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=401,
+     *         description="Unauthorized"
+     *     ),
+     *     @OA\Response(
+     *         response=422,
+     *         description="Invalid input data"
+     *     )
+     * )
+     *
      * Handle a login request to the application.
      *
      * This method validates the login request using LoginRequest,
@@ -50,6 +107,20 @@ class AuthController extends Controller
     }
 
     /**
+     * @OA\Post(
+     *     path="/api/auth/logout",
+     *     summary="Handle a logout request to the application",
+     *     tags={"Authentication"},
+     *     @OA\Response(
+     *         response=200,
+     *         description="User successfully logged out"
+     *     ),
+     *     @OA\Response(
+     *         response=401,
+     *         description="Unauthorized"
+     *     )
+     * )
+     *
      * Handle a logout request to the application.
      *
      * This method invokes the logout method on the AuthService
@@ -64,6 +135,68 @@ class AuthController extends Controller
     }
 
     /**
+     * @OA\Post(
+     *     path="/api/auth/register",
+     *     summary="Handle a registration request to the application",
+     *     tags={"Authentication"},
+     *     @OA\RequestBody(
+     *         required=true,
+     *         description="User registration data",
+     *         @OA\JsonContent(
+     *             @OA\Property(
+     *                 property="name",
+     *                 type="string",
+     *                 description="User's name"
+     *             ),
+     *             @OA\Property(
+     *                 property="email",
+     *                 type="string",
+     *                 format="email",
+     *                 description="User's email"
+     *             ),
+     *             @OA\Property(
+     *                 property="password",
+     *                 type="string",
+     *                 description="User's password"
+     *             )
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=201,
+     *         description="User successfully registered",
+     *         @OA\JsonContent(
+     *             @OA\Property(
+     *                 property="user",
+     *                 ref="#/components/schemas/User",
+     *                 description="Registered user data"
+     *             ),
+     *             @OA\Property(
+     *                 property="access_token",
+     *                 type="string",
+     *                 description="JWT access token"
+     *             ),
+     *             @OA\Property(
+     *                 property="token_type",
+     *                 type="string",
+     *                 description="Token type (Bearer)"
+     *             ),
+     *             @OA\Property(
+     *                 property="expires_in",
+     *                 type="integer",
+     *                 description="Token expiration time in seconds"
+     *             )
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=401,
+     *         description="Unauthorized"
+     *     ),
+     *     @OA\Response(
+     *         response=422,
+     *         description="Invalid input data"
+     *     )
+     * )
+     *
      * Handle a registration request to the application.
      *
      * This method validates the registration request using RegisterRequest,

@@ -24,6 +24,7 @@ os códigos fontes para análise via GitHub para rodrigo.warzak@terceirizados.fa
 -   Aumentar cobertura de testes (65.8%).
 -   Melhorar documentação Swagger.
 -   Implementar interfaces.
+-   Executar ferramenta de análise de código.
 
 ## Informações
 

@@ -37,19 +37,19 @@ Route::middleware(['auth:sanctum'])->prefix('users')->name('users.')->controller
 });
 
 Route::middleware(['auth:sanctum'])->prefix('task_types')->name('task_types.')->controller(TypeController::class)->group(function () {
-    Route::get('/match', 'findAllMatches');
-    Route::get('/', 'findAll');
-    Route::get('/{type}', 'findOne');
-    Route::post('/', 'create');
-    Route::put('/{type}', 'update');
-    Route::delete('/{type}', 'delete');
+    Route::get('/match', 'findAllMatches')->name('findAllMatches');
+    Route::get('/', 'findAll')->name('findAll');
+    Route::get('/{type}', 'findOne')->name('findOne');
+    Route::post('/', 'create')->name('create');
+    Route::put('/{type}', 'update')->name('update');
+    Route::delete('/{type}', 'delete')->name('delete');
 });
 
 Route::middleware(['auth:sanctum'])->prefix('tasks')->name('tasks.')->controller(TaskController::class)->group(function () {
-    Route::get('/match', 'findAllMatches');
-    Route::get('/', 'findAll');
-    Route::get('/{task}', 'findOne');
-    Route::post('/', 'create');
-    Route::put('/{task}', 'update');
-    Route::delete('/{task}', 'delete');
+    Route::get('/match', 'findAllMatches')->name('findAllMatches');
+    Route::get('/', 'findAll')->name('findAll');
+    Route::get('/{task}', 'findOne')->name('findOne');
+    Route::post('/', 'create')->name('create');
+    Route::put('/{task}', 'update')->name('update');
+    Route::delete('/{task}', 'delete')->name('delete');
 });

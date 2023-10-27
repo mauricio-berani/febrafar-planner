@@ -4,6 +4,7 @@ namespace App\Models\Task;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 /**
  * Class Type
@@ -15,6 +16,7 @@ use Illuminate\Database\Eloquent\Concerns\HasUuids;
 class Type extends Model
 {
     use HasUuids;
+    use HasFactory;
 
     /**
      * The table associated with the model.

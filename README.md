@@ -34,3 +34,6 @@ os códigos fontes para análise via GitHub para rodrigo.warzak@terceirizados.fa
 -   Foi criado um seeder para um usuário administrador, para utilizar, execute o comando a seguir: `sail artisan db:seed --class=UserSeeder` - Se não estiver utilizando Sail, substitua "sail" por "php". Apenas usuários administradores podem utilizar o recurso "users". Usuário administrador: email=administrador@febrafar.com.br senha=febrafar2023$
 -   Para acessar a documentação Swagger, utilize o link: [base_url]/api/documentation/
 -   Para filtrar datas por range utilizar o endpoint tasks/match?filterDate=[data]&deadline=[data].
+
+## Diagrama
+![Febrafar - Planner](https://github.com/mauricio-berani/febrafar-planner/assets/112331299/27a1de4f-7c1c-4a43-90e5-20d2a0333c58)
